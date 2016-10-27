@@ -69,10 +69,13 @@ class TimezoneFinder:
     (tests evaluated this to be the fastest setup when being used with numba)
     """
 
-    def __init__(self):
+    def __init__(self, file_path=None):
 
         # open the file in binary reading mode
-        self.binary_file = open(join(dirname(__file__), 'timezone_data.bin'), 'rb')
+        if file_path:
+            self.binary_file = open(file_path, 'rb')
+        else:
+            self.binary_file = open(join(dirname(__file__), 'timezone_data.bin'), 'rb')
 
         # for more info on what is stored how in the .bin please read the comments in file_converter
         # read the first 2byte int (= number of polygons stored in the .bin)
